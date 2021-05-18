@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+html, body {
+    height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #EDECDF;
+}
+
+
+font {
+  font-family: 'Montserrat', sans-serif;
+  color: #059862;
+}
+
+
+a {
+  text-decoration: none !important;
+}
+
+table{
+  float: left;
+  width: 100%;
+  padding: 20px;
+  border-collapse: collapse;
+}
+th{
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+td{
+  padding: 10px;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}

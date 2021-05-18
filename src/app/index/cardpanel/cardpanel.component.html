@@ -1,0 +1,26 @@
+<div class="card-main" *ngIf="openHome">
+  <div>
+    <h1><i class="fas fa-utensils"></i> Food List</h1>
+  </div>
+  <div>
+    <button style="background-color: lightgreen;">Add New Menu +</button>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Available</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let post of post">
+        <td>{{ post.product_name}}</td>
+        <td><button><i class="fas fa-eye"></i>&nbsp;view</button></td>
+        <td style="color: green">Yes</td>
+        <td><button><i class="fas fa-edit"></i>&nbsp;edit</button></td>
+      </tr>
+    </table>
+  
+  </div>
+</div>
+
