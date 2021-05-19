@@ -59,4 +59,24 @@
   background-color: transparent;
 }
 
+.list-label{
+  float: left;
+  width: 30%;
+  padding: 10px;
+}
+
+.search-input{
+  float: left;
+  width: 30%;
+  padding: 10px;
+}
+.search-input input{
+  background-color: #f4f3f3;
+  padding: 10px;
+  width: 50%;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
 /* card component css */

@@ -7,16 +7,19 @@ import { DataService } from '../../services/data.service'; // Services
   styleUrls: ['./cardpanel.component.css']
 })
 export class CardpanelComponent implements OnInit {
-  openHome: boolean = true;
-  posts: any;
-  post: any;
-  constructor(private data: DataService) { }
+  // Variables ----------------
+  posts: any; // ----- this is the result ----------
+  post: any; // ------ this will be the payload from the result ---------
+
+  constructor(private data: DataService) {}
 
   ngOnInit(): void {
-    this.getPosts();
+    this.getFood(); // ----- RUNS FUNCTIONS --------
   }
-  // GET Products
-  getPosts(): void{
+  // GET ----------------------
+
+  // GET INGREDIENTS --------------
+  getFood(): void{
     this.data.getData('products').subscribe((res)=>{
       this.posts = res;
       this.post = this.posts.payload;

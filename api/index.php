@@ -1,30 +1,35 @@
 <?php
 	header('Access-Control-Allow-Origin: *');
 	header('Content-Type: application/json');
-// -----------------------------------------------------
+// INCLUDES --------------------------------------------
 	include_once './config/database.php';
 	include_once './posts/post.php';
-// -----------------------------------------------------
+// VARIABLES -------------------------------------------
 	$database = new Database();
 	$db = $database->connect();
 	$post = new Post($db);
 	$data = array();
 
 	$req = explode('/', rtrim($_REQUEST['request'], '/'));
-// -----------------------------------------------------
+// SWICTH - CASE ---------------------------------------
 	switch ($_SERVER['REQUEST_METHOD']) {
 // -----------------------------------------------------
 case 'POST':
 			switch ($req[0]) {
 			// Adds message
-				case 'send_message':
+				case 'add_menu':
 					$d = json_decode(file_get_contents("php://input"));
 					echo json_encode($post->send_message($d));
 				break;
-			// Add user
-				case 'register_user':
+			// DELETE Menu
+				case 'delete_menu':
 					$d = json_decode(file_get_contents("php://input"));
-					echo json_encode($auth->register_user($d));
+					echo json_encode($post->send_message($d));
+				break;
+			// Update Menu
+				case 'delete_menu':
+					$d = json_decode(file_get_contents("php://input"));
+					echo json_encode($post->send_message($d));
 				break;
 			// Login user
 				case 'login':
@@ -40,6 +45,8 @@ case 'POST':
 	break;
 // -----------------------------------------------------
 	case 'GET':
+
+// GET PRODUCTS ----------------------------------------
 		switch ($req[0]) {
 			case 'products':
 				if(count($req)>1){
@@ -49,7 +56,7 @@ case 'POST':
 					}
 			break;
 			}
-
+// GET INGREDIENTS --------------------------------------
 		switch ($req[0]) {
 			case 'ingredients':
 				if(count($req)>1){
@@ -60,7 +67,7 @@ case 'POST':
 		break;
 		}
 		break;
-
+// DEFAULT RESPONSE --------------------------------------
 		default:
 			http_response_code(400);
 			echo "Bad Request";

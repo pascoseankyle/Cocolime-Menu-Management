@@ -1,6 +1,7 @@
 <?php
-
 class Post{
+  // Variables -------------------------------------
+  
   private $conn;
   private $sql;
   private $info = [];
@@ -18,7 +19,9 @@ class Post{
   public function __construct($db){
 			$this->conn = $db;
   }
+  // Functions -------------------------------------
 
+  // SELECT ALL ------------------------------------
   function select($table, $filter_data){
     $this->sql="SELECT * FROM `$table` WHERE 1";
     if ($filter_data != null) {
@@ -44,10 +47,13 @@ class Post{
       'timestamp'=>date('D M j, Y G:i:s T')
     );
   }
+
+  // SELECT INGREDIENTS -------------------------------
   function select_food_ing($table, $filter_data){
     $this->sql="SELECT tbl_ingredients.prod_id, tbl_ingredients.ing_name, tbl_ingredients.ing_quantity, tbl_products.product_id FROM tbl_ingredients INNER JOIN tbl_products WHERE tbl_products.product_id = tbl_ingredients.prod_id";
     if ($filter_data != null) {
-      $this->sql = "SELECT * FROM `$table` WHERE id = $filter_data";
+      // SELECT 1 INGREDIENT --------------------------
+      $this->sql = "SELECT tbl_ingredients.prod_id, tbl_ingredients.ing_name, tbl_ingredients.ing_quantity, tbl_products.product_id FROM tbl_ingredients INNER JOIN tbl_products ON tbl_products.product_id = tbl_ingredients.prod_id WHERE tbl_products.product_id = $filter_data";
     }
     if ($result = $this->conn->query($this->sql)) {
       if ($result->num_rows > 0) {

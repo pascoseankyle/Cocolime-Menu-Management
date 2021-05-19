@@ -8,21 +8,16 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
   background-color: #EDECDF;
 }
-
-
-font {
-  font-family: 'Montserrat', sans-serif;
-  color: #059862;
-}
-
-
 a {
+  color: black;
   text-decoration: none !important;
 }
-
+a:hover{
+  font-weight: bold;
+}
 table{
   float: left;
   width: 100%;
