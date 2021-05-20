@@ -1,4 +1,3 @@
-
 #viewpanel {
   position: absolute;
   bottom: 0;
@@ -13,70 +12,20 @@
   background: var(--color_background);
   background-image: linear-gradient(to top, rgba(173, 110, 81, .1), rgb(173, 156, 81, .5));
 }
-
 #content-container {
   margin-top: 20px;
   margin-bottom: auto;
   background: var(--white);
   padding: 20px;
 }
-
 .container-fluid {
   padding: 10px;
   align-items: center;
   justify-content: center;
 }
-
 #header {
   background: rgba(128, 128, 150, .5);
   color: var(--black);
   padding: 10px;
   font-size: 20px;
 }
-
-.card-main{
-  margin-left: 20px;
-  margin-top: 20px;
-  background-color: white;
-  float: left;
-  width : 80%; 
-  height: 70%;
-  padding: 10px;
-  border-radius: 30px;
-  overflow: auto;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.card-main button {
-  background-color: lightgray;
-  padding: 9px;
-  border: none;
-  border-radius: 10px;
-  width: 140px;
-}
-
-.card-main button:hover{
-  background-color: transparent;
-}
-
-.list-label{
-  float: left;
-  width: 30%;
-  padding: 10px;
-}
-
-.search-input{
-  float: left;
-  width: 30%;
-  padding: 10px;
-}
-.search-input input{
-  background-color: #f4f3f3;
-  padding: 10px;
-  width: 50%;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-}
-
-/* card component css */

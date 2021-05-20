@@ -76,9 +76,9 @@ class Post{
   // TO DO :: PRIMARY CURD :: !! ------------------------------
 
   // function add() ----- NOTE : ADD NEW MENU --------
-  // function update() -------- NOTW : UPDATE A MENU ------
+  // function update() -------- NOTE : UPDATE A MENU ------
   // function archive() ---- NOTE : A MENU CANNOT BE DELETED BUT ARCHIVED ---
-
+  // function available() ------ NOTE : CHECK IF A PRODUCT HAS AN INGREDIENT ING_QUANTITY = 0 THEN AVAILABLE IS = 'NO' ELSE 'YES'
   // TO DO :: SECONDARY ::  DECREASE INGREDIENT PER FOOD SALE !! ----------
     // ------------------- 1 ---------------------------
     // GET JSON DATA -> CONVERT TO PHP ARRAY = $JSON_ARRAY; ! READ !
