@@ -11,7 +11,6 @@ import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './index/header/header.component';
 import { CardpanelComponent } from './index/cardpanel/cardpanel.component';
-
 //Modules Import
 
 // Material Form Controls
@@ -57,7 +56,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { TestingComponent } from './testing/testing.component';
 // HTTP
-import { HttpClientModule } from '@angular/common/http'; // HTTP
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +72,7 @@ import { HttpClientModule } from '@angular/common/http'; // HTTP
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     // Material Cons Imports
 

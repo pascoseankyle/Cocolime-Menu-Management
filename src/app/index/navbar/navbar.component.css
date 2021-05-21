@@ -42,10 +42,11 @@
   float: left;
   padding: 15px;
   border: none;
-  background-color: white;
+  background-image: linear-gradient(to right, rgb(212, 255, 211), #b0ffc5);
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: 20px;
 }
 .div-add-item button:hover{
   background-color: transparent;
+  background-image: none;
 }
