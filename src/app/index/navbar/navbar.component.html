@@ -3,24 +3,37 @@
     <button (click)="openModal()">Add New Menu &nbsp;<i class="fas fa-plus"></i></button>
   </div>
   <div id="nav-sidebar-list">
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'><i class="fa fa-home"></i></span>&nbsp; Home</a>
-    <a href="" id="sidebar-home" class="nav-item"><span class='icon-field'></span><i class="fas fa-sign-out-alt"></i>&nbsp; Logout</a>
   </div>
   <!-- ---------------------- MODALS ----------------------------- -->
   <!-- Add Product Modal -->
-  <div *ngIf = "openAddModal" class="modal">
+  <div *ngIf = "openAddModal" class="modal" (submit)="openModalIng($event)">
     <div class="modal-content">
       <!-- Onclick close modal -->
       <button (click)="closeModal()" class="close-modal"><i class="fas fa-times"></i></button> 
         <h2>Add New Menu</h2>
         <hr>
         <!-- (1) Input added product name -->
-        <input [(ngModel)]="inputProduct" id="input-product-name" class="modal-input" type="text" 
-        placeholder="Add Menu Name ..." required>
-        <br>
-        <div class="button-mid">
-          <!-- close add Product Modal and Opens Add Ingredient Modal -->
-          <button (click)="openModalIng()" class="modal-button" type="submit">Next&nbsp; <i class="fas fa-forward"></i></button>
+          <div *ngFor="let id of id">
+            <form id="form-add-product" ngNativeValidate>
+              <input type="hidden" id="prod_id" name="prod_id" value="{{ id.product_id}}">
+              <input  id="input_product_name" name="input_product_name" class="modal-input" type="text" 
+              placeholder="Add Menu Name ..." required>
+              <br>
+              <br>
+              <br>
+              <input id="input_product_price" name="input_product_price" class="modal-input" type="number" 
+              placeholder="Add Menu Price ..." required>
+              <br>
+              <br>
+              <br>
+              <input id="input_product_type" name="input_product_type" class="modal-input" type="text" 
+              placeholder="Add Menu Type ..." required>
+              <br>
+              <div class="button-mid">
+                <!-- close add Product Modal and Opens Add Ingredient Modal -->
+                <button type="submit" class="modal-button">Next&nbsp; <i class="fas fa-forward"></i></button>
+            </div>
+            </form>
         </div>
     </div>
   </div>
@@ -31,11 +44,15 @@
       <div class="content-left">
         <div class="h-20">
           <!-- (2) Output the product name from Input added -->
-          <h2>Add {{ inputProduct }} Ingredients</h2>
+          <h2>Add {{ inputProductArray.name }} Ingredients</h2>
         </div>
         <!-- (3) Input an Ingredient -->
         <input [(ngModel)]="ingredientString" id="input-product-name" 
         class="modal-input" type="text" placeholder="Add Ingredient ..." required>
+        <br>
+        <br>
+        <input [(ngModel)]="ingredientNumber" id="input-product-qty" 
+        class="modal-input" type="number" placeholder="Add Ingredient Qty ..." required>
         <br>
         <br>
         <div class="button-mid">
@@ -44,7 +61,7 @@
         </div>
       </div>
       <div class="h-20">
-        <h4>{{ inputProduct }} Ingredients Added List</h4>
+        <h4>{{ inputProductArray.name }} Ingredients Added List</h4>
       </div>
       <div class="content-right">
         <table>

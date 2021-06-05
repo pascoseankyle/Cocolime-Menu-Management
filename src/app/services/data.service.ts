@@ -8,16 +8,17 @@ export class DataService {
 
   // URL ----------------------------------------
 
-  baseURL = 'http://localhost:8080/SIA-Menu/api/';
+  URL = 'http://localhost:8080/Menu-Management/api/';
 
   // USE HTTP CLIENT ----------------------------
 
-  constructor(private http: HttpClient) { console.log('its working!') }
+  constructor(private http: HttpClient) {}
 
   // GET DATA FROM API --------------------------
 
-  public getData(endpoint: any) {
-
-    return this.http.get(this.baseURL + endpoint);
+  public getData(endpoint: any, results: any) {
+    return  <any>( 
+      this.http.post(this.URL + endpoint, btoa(JSON.stringify(results)))
+    );
   }
 }

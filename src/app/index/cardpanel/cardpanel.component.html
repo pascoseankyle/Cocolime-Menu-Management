@@ -3,7 +3,8 @@
     <h1><i class="fas fa-utensils"></i> Food List</h1>
   </div>
   <div class="search-input">
-    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search"></label>
+    <label for="search"><i class="fas fa-search"></i>&nbsp; <input id="search" name="search" placeholder="search" [(ngModel)]="search"></label>
+    <button class="search" (click)="getFood()">search</button>
   </div>
   <div>
     <table>
@@ -12,21 +13,17 @@
         <th>Available</th>
         <th>Actions</th>
       </tr>
-      <tr *ngFor="let post of post">
+      <tr *ngFor="let food of food">
         <td style="width: 30%">  
           <div style="float: left; padding-left: 10px">
-            <div class="div-product-td"><p>{{ post.product_name}}</p></div>
-            <!-- TO DO :: SHOW PRODUCT & INGREDIENTS AND ( UPDATE FUNCTION ) -->
+            <div class="div-product-td"><p>{{ food?.product_name}}</p></div>
           </div>
         </td>
-        <!-- TO DO :: VIEW INGREDIENTS WHERE PRODUCT_ID -->
-        <!-- TODO :: FOR EACH INGREDIENT WHERE PRODUCT ID * IF * AN INGREDIENT HAS 0 QUANTITY AVAILABLE IS = NO -->
         <td class="td-avail">Yes</td>
-         <!-- TODO :: ARCHIVE PRODUCT  -->
         <td> 
-          <button (click)="viewModal()" class="card-view-button"><i class="fas fa-eye"></i>&nbsp;view</button> &nbsp;
-          <button (click)="editModal()" class="card-edit-button"><i class="fas fa-edit"></i>&nbsp; Edit</button> &nbsp;
-          <button (click)="openDelete()" class="card-delete-button"><i class="fas fa-trash-alt"></i>&nbsp; Delete</button> 
+          <button (click)="viewModal(food)" class="card-view-button"><i class="fas fa-eye"></i>&nbsp;view</button> &nbsp;
+          <button (click)="editModal(food)" class="card-edit-button"><i class="fas fa-edit"></i>&nbsp; Edit</button> &nbsp;
+          <button (click)="openDelete(food)" class="card-delete-button"><i class="fas fa-trash-alt"></i>&nbsp; Delete</button> 
         </td>
       </tr>
     </table>
@@ -36,25 +33,27 @@
 <div *ngIf = "openEditModal" class="modal">
   <div class="modal-content">
     <!-- Onclick close modal -->
-    <button (click)="closeEditModal()" class="close-modal"><i class="fas fa-times"></i></button> 
+    <button type="button" (click)="closeEditModal()" class="close-modal"><i class="fas fa-times"></i></button> 
       <h2><i class="fas fa-edit" style="color:green"></i>&nbsp; Edit Menu</h2>
       <hr>
-      <input class="modal-input" placeholder="Product Name">
+      <input id="edit_id_name" class="modal-input" placeholder="" [(ngModel)]="foodArray.product_name" >
+      <input id="edit_id_price" class="modal-input" placeholder="" [(ngModel)]="foodArray.product_price" >
+      <input id="edit_id_type" class="modal-input" placeholder="" [(ngModel)]="foodArray.product_type" >
       <div>
       <div class="h-30">
         <h4>Ingredients</h4>
       </div>
       </div>
       <div class="modal-container">
-        <ul>
+        <ul *ngFor="let ingredient of ingredients">
           <li class="li-10">
-            Name &nbsp;
-            <button (click)="editIngModal()" class="modal-button">edit</button>
+            {{ ingredient.ing_name }} &nbsp;
+            <button type="button" (click)="editIngModal(ingredient)" class="modal-button">edit</button>
           </li> 
         </ul>
       </div>
       <div class="button-mid">
-        <button class="modal-button-add" >Save Changes</button>
+        <button type="submit" (click)="updateProduct()" class="modal-button-add" >Save Changes</button>
       </div>
   </div>
 </div>
@@ -63,13 +62,14 @@
 <div *ngIf = "openIngredientModal" class="modal">
   <div class="modal-content">
     <!-- Onclick close modal -->
-    <button (click)="closeIngModal()" class="close-modal"><i class="fas fa-times"></i></button> 
-      <h2>Edit Ingredient</h2>
+    <button type="button" (click)="closeIngModal()" class="close-modal"><i class="fas fa-times"></i></button> 
+      <h2><i style="color:brown" class="fas fa-drumstick-bite"></i>&nbsp; Edit Ingredient</h2>
       <hr>
-      <input class="modal-input" placeholder="Ingredient Name">
+      <input class="modal-input" placeholder="Ingredient Name" [(ngModel)]="ingredientsArray.ing_name">
+      <input class="modal-input" placeholder="Ingredient Name" [(ngModel)]="ingredientsArray.ing_quantity">
       <div class="button-mid">
-        <button (click)="closeIngModal()" class="modal-button">Back</button>
-        <button class="modal-button-add" >Save Changes</button>
+        <button type="button" (click)="closeIngModal()" class="modal-button">Back</button>
+        <button type="submit" (click)="updateIng()" class="modal-button-add" >Save Changes</button>
       </div>
   </div>
 </div>
@@ -78,12 +78,12 @@
 <div *ngIf = "openViewModal" class="modal">
   <div class="modal-content">
     <!-- Onclick close modal -->
-    <button (click)="closeViewModal()" class="close-modal"><i class="fas fa-times"></i></button> 
+    <button type="button" (click)="closeViewModal()" class="close-modal"><i class="fas fa-times"></i></button> 
       <h2><i class="fas fa-eye" style="color: gray"></i>&nbsp; View Menu</h2>
       <hr>
        <!-- Onclick close modal -->
     <div class="text-center">
-      <h1>Product Name</h1>
+      <h1>{{ foodArray.product_name }}</h1>
     </div>
     <div>
     <div class="h-30">
@@ -91,9 +91,9 @@
     </div>
     </div>
     <div class="modal-container">
-      <ul>
+      <ul *ngFor="let ingredient of ingredients">
         <li class="li-10">
-          Name &nbsp;
+          {{ ingredient.ing_name }} &nbsp;
         </li> 
       </ul>
     </div>
@@ -103,13 +103,14 @@
 <!-- Delete Modal -->
 <div *ngIf = "deleteModal" class="modal">
   <div class="modal-content">
-    <button (click)="closeDelete()" class="close-modal"><i class="fas fa-times"></i></button> 
+    <button type="button" (click)="closeDelete()" class="close-modal"><i class="fas fa-times"></i></button> 
     <h2><i class="fas fa-exclamation-triangle" style="color: red"></i>&nbsp; Delete</h2>
     <hr>
-    <p>Are you sure to delete?  Product name </p>
+    <p>Are you sure to delete?</p>
+    <h3>{{ foodArray.product_name }}</h3>
     <div class="button-mid">
-      <button class="modal-button">No</button>
-      <button class="modal-button-danger">Yes</button>
+      <button (click)="closeDelete()" type="button" class="modal-button">No</button>
+      <button (click)="deleteFood( foodArray.product_id )" type="submit" class="modal-button-danger">Yes</button>
     </div>
   </div>
 </div>

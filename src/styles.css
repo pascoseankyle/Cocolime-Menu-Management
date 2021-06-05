@@ -196,7 +196,7 @@ button{
   float: left;
   position: absolute;
   left: 25%;
-  top: 20%;
+  top: 2;
   background-color: #fefefe;
   padding: 30px;
   border: 1px solid #888;
@@ -254,17 +254,16 @@ button{
 }
 .li-50{
   float: left;
-  width: 120px;
+  width: 100px;
   overflow: auto;
 }
 .h-20{
   float: left;
-  width: 250px;
+  width: 200px;
   overflow: auto;
   margin-bottom: 10px;
 }
 .td-10{
-  float: left;
   width: 100px;
   overflow: auto;
 }
@@ -274,4 +273,14 @@ button{
 }
 .li-10{
   margin-bottom: 2px;
+}
+.search {
+  background-color: #EDECDF;
+  border: transparent;
+  padding: 10px;
+  margin-left: 5px;
+  border-radius: 10px;
+}
+.search:hover {
+  background-color: transparent;
 }
