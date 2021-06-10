@@ -27,13 +27,21 @@
 				case 'get_productId': // Get Product id
 					echo json_encode($post->generalQuery("SELECT * FROM `tbl_products` ORDER BY product_id DESC LIMIT 1"));					
 				break;
-				case 'add_ingredients': // Add Ingredients
+				case 'add_ing': // Add Ingredients
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
 					echo json_encode($post->addIngredients($d));
 				break;
 				case 'update_ing': // Update Ingredients
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
-					echo json_encode($post->editIng($d));
+					echo json_encode($post->editIngredients($d));
+				break;
+				case 'delete_ing': // Update Ingredients
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->deleteIngredients($d));
+				break;
+				case 'add_ing_prod': // Add Ingredients for Product
+					$d = json_decode(base64_decode(file_get_contents("php://input")));
+					echo json_encode($post->addIngredientProducts($d));
 				break;
 				// --------------- MENU -----------------
 				case 'all_menu': // Get All Menu
@@ -54,9 +62,12 @@
 				break;
 
 				// ----------- PROCESS | TO BE TESTED !! WARNING ---
-				case 'proccess': // Process 
+				case 'proccess': // Updates ingredients Quantity 
 					$d = json_decode(base64_decode(file_get_contents("php://input")));
                     echo json_encode($post->proccess($d));
+				break;
+				case 'available': // Checks if available
+					echo json_encode($post->checkAvaialble());
 				break;
 				
 				// -------------------- Auth Class --------------------

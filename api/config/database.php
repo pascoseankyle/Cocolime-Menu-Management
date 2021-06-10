@@ -4,7 +4,7 @@
         private $host = 'localhost';
         private $username = 'root';
         private $password = '';
-        private $dbname = 'db_sia_menu'; // Database name
+        private $dbname = 'menu_db'; // Database name
         private $conn;
 
         function connect() {

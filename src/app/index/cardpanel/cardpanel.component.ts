@@ -10,22 +10,28 @@ export class CardpanelComponent implements OnInit {
   // Variables ----------------
   stat: any;
   search: any;
+  available: boolean = false;
+  notAvailable: boolean = true;
   // Menu / Food /Productss
   food: any; 
-  foodArray: any = {};
+  foodArray: any={};
   // Ingredients
   ingredients: any;
-  ingredientsArray: any = {};
+  ingredientsArray: any={};
+  ingredientsInput: any={};
   // Modal Variables
   openEditModal: boolean = false;
   openViewModal: boolean = false;
   openIngredientModal: boolean = false;
+  addIngredientModal: boolean = false;
   deleteModal: boolean = false;
 
   constructor(private data: DataService) {}
 
   ngOnInit(): void {
     this.getFood();
+    this.upAvailable();
+    this.intervalFunction();
   }
 
 // --------------- MODALS ------------------------------
@@ -35,6 +41,27 @@ editIngModal(ingIndex: any){
   this.openEditModal = false;
   this.openIngredientModal = true;
   this.ingredientsArray = ingIndex;
+}
+// Delete Ingredient
+deleteIng(ingredients: any): void{
+  this.data.getData("delete_ing", ingredients).subscribe((results: any) => {})
+  this.getIngredients(ingredients.prod_id);
+}
+// Add Ingredient Modal
+addIngModal(ingredient: any): void{
+  this.addIngredientModal = true;
+}
+addIng(event: any,ingredient: any): void{
+  this.ingredientsInput.name=event.target.ingredientAdd.value;
+  this.ingredientsInput.qty=event.target.ingredientQty.value;
+  this.ingredientsInput.id=ingredient.product_id;
+  this.data.getData("add_ing_prod", this.ingredientsInput).subscribe((results: any) => {
+    this.getIngredients(this.ingredientsInput.id);
+  })
+}
+// Close Add Ingredient Modal
+closeAddIng(): void{
+  this.addIngredientModal = false;
 }
 // Close Edit Ingredient Modal
 closeIngModal(){
@@ -110,4 +137,15 @@ updateIng(): void {
   this.openEditModal = true;
   this.data.getData("update_ing", this.ingredientsArray).subscribe((results: any) => {})
 }  
+// Updata Avaialble
+upAvailable(): void {
+  this.data.getData("available", this.ingredientsArray).subscribe((results: any) => {})
+}
+
+intervalFunction(): void{
+    setInterval(() => { this.upAvailable() }, 5000);
+    setInterval(() => { this.getFood() }, 5000);
+}
+
+
 }

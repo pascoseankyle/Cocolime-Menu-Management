@@ -17,17 +17,17 @@
             <form id="form-add-product" ngNativeValidate>
               <input type="hidden" id="prod_id" name="prod_id" value="{{ id.product_id}}">
               <input  id="input_product_name" name="input_product_name" class="modal-input" type="text" 
-              placeholder="Add Menu Name ..." required>
+              placeholder="Name ..." required>
               <br>
               <br>
               <br>
               <input id="input_product_price" name="input_product_price" class="modal-input" type="number" 
-              placeholder="Add Menu Price ..." required>
+              placeholder="Price" required>
               <br>
               <br>
               <br>
               <input id="input_product_type" name="input_product_type" class="modal-input" type="text" 
-              placeholder="Add Menu Type ..." required>
+              placeholder="Type" required>
               <br>
               <div class="button-mid">
                 <!-- close add Product Modal and Opens Add Ingredient Modal -->
@@ -44,7 +44,7 @@
       <div class="content-left">
         <div class="h-20">
           <!-- (2) Output the product name from Input added -->
-          <h2>Add {{ inputProductArray.name }} Ingredients</h2>
+          <h2>Add {{ inputProductArray.product_name }} Ingredients</h2>
         </div>
         <!-- (3) Input an Ingredient -->
         <input [(ngModel)]="ingredientString" id="input-product-name" 
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="h-20">
-        <h4>{{ inputProductArray.name }} Ingredients Added List</h4>
+        <h4>{{ inputProductArray.product_name }} Ingredients Added List</h4>
       </div>
       <div class="content-right">
         <table>

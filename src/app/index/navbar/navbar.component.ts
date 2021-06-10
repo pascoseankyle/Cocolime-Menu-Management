@@ -83,7 +83,7 @@ export class NavbarComponent implements OnInit {
     this.ingredientArray.ingredients = this.arraySample;
     this.ingredientArray.qty = this.arrayQty;
     this.ingredientArray.id =  this.inputProductArray.id;
-    this.data.getData("add_ingredients", this.ingredientArray).subscribe((results: any) => {})
+    this.data.getData("add_ing", this.ingredientArray).subscribe((results: any) => {})
     this.data.getData("add_menu", this.inputProductArray).subscribe((results: any) => {})
     window.location.reload();
     this.removeAll();
